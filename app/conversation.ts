@@ -20,12 +20,18 @@ const {
     MONGO_PASSWORD,
     MONGO_DB,
     MONGO_PORT,
-    MONGO_HOST
+    MONGO_HOST,
+    NODE_ENV
 } = process.env;
 
+const connectionString = NODE_ENV === 'production' ? 
+    `mongodb+srv://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD || '')}@${MONGO_HOST}/?retryWrites=true&w=majority`
+    : `mongodb://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD || '')}@${MONGO_HOST}:${MONGO_PORT}`;
+
 export function createMongoClient() {
-    return new MongoClient(`mongodb://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD || '')}@${MONGO_HOST}:${MONGO_PORT}`);
+    return new MongoClient(connectionString);
 }
+
 
 export function getConversationCollection(mongoClient: MongoClient) : Collection<Conversation> {
     return mongoClient.db(MONGO_DB).collection<Conversation>('conversations');
