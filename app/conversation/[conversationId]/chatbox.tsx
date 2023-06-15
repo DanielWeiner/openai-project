@@ -86,20 +86,21 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
         scroller.current?.scrollTo(0, 999999999);
     }, [scroller, chatLog, chatResponse])
 
+    //@ts-ignore
     const [vh, setVh] = useState(window.innerHeight);
     
-      useEffect(() => {
+    useEffect(() => {
         const updateVh = () => {
-          //@ts-ignore
-          setVh(window.innerHeight);
+            //@ts-ignore
+            setVh(window.innerHeight);
         };
-    
+
         //@ts-ignore
         window.addEventListener('resize', updateVh);
-    
+
         //@ts-ignore
         return () => window.removeEventListener('resize', updateVh);
-      }, []);
+    }, []);
     
 
     return (
