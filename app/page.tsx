@@ -1,7 +1,5 @@
-
-import { redirect } from 'next/navigation'
-import { v4 as uuid } from 'uuid'
+import ReRouter from './rerouter'
 
 export default async function Home() {
-  redirect(`/conversation/${uuid()}`);
+  return <ReRouter/>
 }
