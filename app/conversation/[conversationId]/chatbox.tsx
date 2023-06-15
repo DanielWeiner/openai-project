@@ -87,7 +87,7 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
     }, [scroller, chatLog, chatResponse])
 
     return (
-        <section className="flex flex-col w-6/12 max-h-full h-full">
+        <section className="flex flex-col w-full lg:w-6/12 max-h-full h-full">
             <h2 className="text-2xl text-slate-700 font-bold text-center py-2">Talk to a Mob Boss</h2>
             <div className="rounded-sm flex-grow overflow-hidden flex flex-col shadow-md" style={{
                     borderBottomLeftRadius: 0,
