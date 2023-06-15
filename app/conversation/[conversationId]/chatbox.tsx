@@ -46,7 +46,7 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
             setChatResponse("");
             setChatId(await response.json());
         })();
-    }, [ chatContents, setChatId, setChatContents, chatResponseRef, setChatResponse, chatLog, setChatLog ]);
+    }, [ conversationId, chatContents, setChatId, setChatContents, chatResponseRef, setChatResponse, chatLog, setChatLog ]);
 
     useEffect(() => {
         if (!chatId) return;
@@ -80,7 +80,7 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
             setEventSource(newEventSource);
             return;
         }
-    }, [ chatId, setChatId, eventSource, setEventSource, chatResponseRef, setChatResponse, chatLog, setChatLog ]);
+    }, [ conversationId, chatId, setChatId, eventSource, setEventSource, chatResponseRef, setChatResponse, chatLog, setChatLog ]);
 
     useEffect(() => {
         scroller.current?.scrollTo(0, 999999999);
@@ -97,7 +97,7 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
                     <div className={`flex flex-col flex-grow py-1 min-h-full justify-end shadow-lg bg-slate-200 pb-3 ${chatLog.length === 0 && !chatResponse ? 'justify-center' : 'justify-end' }`}>
                         {
                             chatLog.length === 0 && !chatResponse ? <p className="text-center text-gray-500 justify-self-center">
-                                Say something to the boss, and make it quick.<br/> Don't forget to address him as "boss".
+                                Say something to the boss, and make it quick.<br/> Don&apos;t forget to address him as &quot;boss&quot;.
                             </p> : null
                         }
 

@@ -19,11 +19,12 @@ const {
     MONGO_USERNAME,
     MONGO_PASSWORD,
     MONGO_DB,
-    MONGO_PORT
+    MONGO_PORT,
+    MONGO_HOST
 } = process.env;
 
 export function createMongoClient() {
-    return new MongoClient(`mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@db:${MONGO_PORT}`);
+    return new MongoClient(`mongodb://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD || '')}@${MONGO_HOST}:${MONGO_PORT}`);
 }
 
 export function getConversationCollection(mongoClient: MongoClient) : Collection<Conversation> {
