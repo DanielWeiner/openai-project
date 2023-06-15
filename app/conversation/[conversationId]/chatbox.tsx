@@ -86,8 +86,27 @@ export default function ChatBox({ conversationId, initialChatLog } : { conversat
         scroller.current?.scrollTo(0, 999999999);
     }, [scroller, chatLog, chatResponse])
 
+    const [vh, setVh] = useState(window.innerHeight);
+    
+      useEffect(() => {
+        const updateVh = () => {
+          //@ts-ignore
+          setVh(window.innerHeight);
+        };
+    
+        //@ts-ignore
+        window.addEventListener('resize', updateVh);
+    
+        //@ts-ignore
+        return () => window.removeEventListener('resize', updateVh);
+      }, []);
+    
+
     return (
-        <section className="flex flex-col w-full lg:w-6/12 max-h-full h-full">
+        <section className="flex flex-col w-full lg:w-6/12" style={{
+            height: vh,
+            maxHeight: vh
+        }}>
             <h2 className="text-2xl text-slate-700 font-bold text-center py-2">Talk to a Mob Boss</h2>
             <div className="rounded-sm flex-grow overflow-hidden flex flex-col shadow-md" style={{
                     borderBottomLeftRadius: 0,
